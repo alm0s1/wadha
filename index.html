@@ -724,6 +724,9 @@ function applyLeaf(Lf,p){
   const s=Math.pow(c,1.3)*.6; Lf.sh.forEach(e=>e.style.opacity=s.toFixed(3));
   const sd=c>0.001?`${(-c*1.4).toFixed(2)}em ${(c*.6).toFixed(2)}em ${(c*1.8).toFixed(2)}em rgba(0,0,0,${(c*.38).toFixed(2)})`:'';
   Lf.faces.forEach(fc=>fc.style.boxShadow=sd);
+  /* سفاري/آيفون لا يخفي أبناء الوجه المقلوب بـ backface-visibility، فنُخفي الوجه المعاكس صراحةً */
+  Lf.faces[0].style.visibility=p>=.5?'hidden':'visible';
+  Lf.faces[1].style.visibility=p>=.5?'visible':'hidden';
   Lf.faces[0].style.pointerEvents=p>=.5?'none':'';
   Lf.faces[1].style.pointerEvents=p>=.5?'':'none';
 }
